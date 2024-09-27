@@ -1,0 +1,75 @@
+# ---------------------------------------------------------------------------- #
+# Hyper parameters
+# ---------------------------------------------------------------------------- #
+HYPER_PARAMS:
+  LEARNING_RATE: 0.01
+  NUM_EPOCHS: 20
+  BATCH_SIZE: 5 #16
+
+# ---------------------------------------------------------------------------- #
+# CUDA Settings
+# ---------------------------------------------------------------------------- #
+CUDA:
+  DEVICE_ID: 0
+
+# ---------------------------------------------------------------------------- #
+# dataset
+# ---------------------------------------------------------------------------- #
+DATASET:
+  CT_DIR_ROOT: &ct_dir_root './dataset/dataset_256/ct'
+  MASK_DIR_ROOT: &mask_dir_root './dataset/dataset_256/mask'
+  CSV_FILE: &csv_file './dataset/dataset.csv'
+  TRAIN_PARAMS:
+    - 'csv_file_path'
+    - *csv_file
+    - 'ct_data_dir'
+    - *ct_dir_root
+    - 'mask_data_dir'
+    - *mask_dir_root
+    - 'abnormal_ratio'
+    -
+  VALID_PARAMS:
+    - 'csv_file_path'
+    - *csv_file
+    - 'ct_data_dir'
+    - *ct_dir_root
+    - 'mask_data_dir'
+    - *mask_dir_root
+    - 'data_type'
+    - 'valid'
+  TEST_PARAMS:
+    - 'csv_file_path'
+    - *csv_file
+    - 'ct_data_dir'
+    - *ct_dir_root
+    - 'mask_data_dir'
+    - *mask_dir_root
+    - 'data_type'
+    - 'test'
+
+# ---------------------------------------------------------------------------- #
+# Model parameters
+# ---------------------------------------------------------------------------- #
+MODEL:
+  NAME: 'unet'
+  PARAMS: ['init_features', 4]
+  LOSS: 'BCE_Loss'
+  LOSS_PARAMS: ()
+
+# ---------------------------------------------------------------------------- #
+# Checkpoints
+# ---------------------------------------------------------------------------- #
+CHECKPOINTS:
+  SAVE_DIR: &save_dir './checkpoint'
+
+# ---------------------------------------------------------------------------- #
+# Test
+# ---------------------------------------------------------------------------- #
+TEST:
+  CHECKPOINT_FILE: './checkpoint/unet/unet_epoch_019_09251818.pth'
+
+# ---------------------------------------------------------------------------- #
+# report infos
+# ---------------------------------------------------------------------------- #
+REPORT:
+  TRAIN_DIR: *save_dir

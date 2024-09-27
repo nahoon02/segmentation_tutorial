@@ -1,0 +1,84 @@
+----------- [config settings] ----------------------
+CHECKPOINTS:
+  SAVE_DIR: ./checkpoint/unet
+CUDA:
+  DEVICE_ID: 0
+CUSTOM_CONFIG:
+  FILENAME: ./config/unet.yaml
+DATALOADER:
+  NUM_WORKERS: 4
+DATASET:
+  CSV_FILE: ./dataset/dataset.csv
+  CT_DIR_ROOT: ./dataset/dataset_256/ct
+  MASK_DIR_ROOT: ./dataset/dataset_256/mask
+  TEST_NAME: TrainDataset
+  TEST_PARAMS: ('csv_file_path', './dataset/dataset.csv', 'ct_data_dir', './dataset/dataset_256/ct', 'mask_data_dir', './dataset/dataset_256/mask', 'data_type', 'test')
+  TRAIN_NAME: TrainDataset
+  TRAIN_PARAMS: ('csv_file_path', './dataset/dataset.csv', 'ct_data_dir', './dataset/dataset_256/ct', 'mask_data_dir', './dataset/dataset_256/mask', 'abnormal_ratio', None)
+  VALID_NAME: TrainDataset
+  VALID_PARAMS: ('csv_file_path', './dataset/dataset.csv', 'ct_data_dir', './dataset/dataset_256/ct', 'mask_data_dir', './dataset/dataset_256/mask', 'data_type', 'valid')
+HYPER_PARAMS:
+  BATCH_SIZE: 5
+  LEARNING_RATE: 0.01
+  NUM_EPOCHS: 20
+MODEL:
+  LOSS: BCE_Loss
+  LOSS_PARAMS: ()
+  NAME: unet
+  OPTIMIZER: SGD
+  OPTIMIZER_PARAMS: ('momentum', 0.9)
+  PARAMS: ('init_features', 4)
+  TEST_PROCESSOR: valid_processor
+  TRAIN_PROCESSOR: train_processor
+  VALID_PROCESSOR: valid_processor
+PERORMANCE:
+  MEASURE: ('Accuracy_slice', 'DSC')
+  PARAMS: (('threshold', 0.5, 'callback_fn', None), ('threshold', 0.5, 'mode', 'batch'))
+REPORT:
+  OWNER: ai_health
+  START_TIME: 2024-09-25 18:09
+  TEST_DIR: none
+  TRAIN_DIR: ./checkpoint/unet
+TEST:
+  CHECKPOINT_FILE: none
+number of train data
+# of normal slices = 7,489
+# of abnormal slices = 1,908
+# of augmented abnormal slice = 0
+# of total slices = 9,397
+# abnormal:normal = 1.0:3.93 
+
+number of valid data
+# of normal slices = 936
+# of abnormal slices = 239
+# of augmented abnormal slice = 0
+# of total slices = 1,175
+# abnormal:normal = 1.0:3.92 
+
+----------------------------------------------------
+epoch,  1,train loss,0.025,valid:(dsc),0.000,elapsed,41 [seconds],unet_epoch_001_09251810.pth,best epoch,1,best DSC,0.000
+epoch,  2,train loss,0.008,valid:(dsc),0.000,elapsed,28 [seconds],unet_epoch_002_09251810.pth,best epoch,2,best DSC,0.000
+epoch,  3,train loss,0.006,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_003_09251810.pth,best epoch,3,best DSC,0.000
+epoch,  4,train loss,0.005,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_004_09251811.pth,best epoch,4,best DSC,0.000
+epoch,  5,train loss,0.005,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_005_09251811.pth,best epoch,5,best DSC,0.000
+epoch,  6,train loss,0.004,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_006_09251812.pth,best epoch,6,best DSC,0.000
+epoch,  7,train loss,0.004,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_007_09251812.pth,best epoch,7,best DSC,0.000
+epoch,  8,train loss,0.004,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_008_09251813.pth,best epoch,8,best DSC,0.000
+epoch,  9,train loss,0.003,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_009_09251813.pth,best epoch,9,best DSC,0.000
+epoch, 10,train loss,0.003,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_010_09251814.pth,best epoch,10,best DSC,0.000
+epoch, 11,train loss,0.003,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_011_09251814.pth,best epoch,11,best DSC,0.000
+epoch, 12,train loss,0.003,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_012_09251815.pth,best epoch,12,best DSC,0.000
+epoch, 13,train loss,0.003,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_013_09251815.pth,best epoch,13,best DSC,0.000
+epoch, 14,train loss,0.003,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_014_09251816.pth,best epoch,14,best DSC,0.000
+epoch, 15,train loss,0.002,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_015_09251816.pth,best epoch,15,best DSC,0.000
+epoch, 16,train loss,0.002,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_016_09251816.pth,best epoch,16,best DSC,0.000
+epoch, 17,train loss,0.002,valid:(dsc),0.000,elapsed,27 [seconds],unet_epoch_017_09251817.pth,best epoch,17,best DSC,0.000
+epoch, 18,train loss,0.002,valid:(dsc),0.752,elapsed,27 [seconds],unet_epoch_018_09251817.pth,best epoch,18,best DSC,0.752
+epoch, 19,train loss,0.002,valid:(dsc),0.759,elapsed,27 [seconds],unet_epoch_019_09251818.pth,best epoch,19,best DSC,0.759
+epoch, 20,train loss,0.002,valid:(dsc),0.679,elapsed,27 [seconds],unet_epoch_020_09251818.pth,best epoch,19,best DSC,0.759
+------------ [best DSC in valid_dataset] ------------
+best epoch[19]=[0.759]
+best epoch[18]=[0.752]
+best epoch[20]=[0.679]
+---------------------------------------
+elapsed train time: 9 [minutes] 27 [seconds]
