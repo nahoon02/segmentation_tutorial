@@ -19,6 +19,7 @@ import math
 from performance.dsc import DSC
 from dataloader import DATASET_CLASSES
 from processor import PROCESSOR_CLASSES
+from util.data_validation import valid_data
 import warnings
 warnings.filterwarnings('ignore')
 
@@ -64,8 +65,6 @@ def main(yaml_path: str) -> None:
     else:
         device = 'cpu'
         use_cuda = False
-
-
 
     """ check directories """
     ct_data_dir = os.path.expanduser(cfg.DATASET.CT_DIR_ROOT)
@@ -147,6 +146,14 @@ def main(yaml_path: str) -> None:
     logger.info('number of valid data')
     logger.info(valid_dataset.get_info())
     logger.info('----------------------------------------------------')
+
+    """ check dataset """
+    logger.info('check ct image data--------------------------->')
+    valid_data(csv_file, ct_data_dir, logger)
+
+    logger.info('check mask image data--------------------------->')
+    valid_data(csv_file, mask_data_dir, logger)
+
 
     """ select train/valid processor"""
     processor_train = PROCESSOR_CLASSES[cfg.MODEL.TRAIN_PROCESSOR]
