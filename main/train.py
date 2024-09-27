@@ -1,5 +1,6 @@
 import os
 import sys
+sys.path.append('..')
 import time
 import torch
 from torch.utils.data import DataLoader
