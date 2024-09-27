@@ -15,12 +15,12 @@ def valid_data(csv_file, data_dir):
 
    print(f'number of ct files from csv file ==> [{len(df)}]')
    print(f'number of ct files in [{data_dir}] ==> [{len(file_list)}]')
-   print(f'validation result = [{len(df) - len(file_list)}]')
+   print(f'validation result: number of missing files in [{data_dir}] = [{len(df) - len(file_list)}]')
 
    diff_df  = df.loc[~(df['filename'].isin(file_list))]
    if len(diff_df) != 0:
-      filename_list = diff_df['filename'].values[0].strip('[]').replace("'", "").replace(' ', '').split(',')
-      print(f'validation check is failed')
+      filename_list = diff_df['filename'].values
+      print(f'validation check is failed. missing file list')
       print(filename_list)
    else:
       print(f'validation check is passed')
@@ -30,7 +30,7 @@ def valid_data(csv_file, data_dir):
 if __name__ == '__main__':
 
    valid_data('../dataset/dataset.csv', '../dataset/dataset_256/ct')
-   valid_data('../dataset/dataset.csv', '../dataset/dataset_256/mask')
+
 
 
 
