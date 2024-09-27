@@ -154,7 +154,6 @@ def main(yaml_path: str) -> None:
     logger.info('check mask image data--------------------------->')
     valid_data(csv_file, mask_data_dir, logger)
 
-
     """ select train/valid processor"""
     processor_train = PROCESSOR_CLASSES[cfg.MODEL.TRAIN_PROCESSOR]
     processor_valid = PROCESSOR_CLASSES[cfg.MODEL.VALID_PROCESSOR]
