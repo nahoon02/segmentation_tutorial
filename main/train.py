@@ -240,4 +240,4 @@ if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1]:
         main(sys.argv[1])
     else:
-        main('./config/unet_0927.yaml')
+        main('../config/unet.yaml')
