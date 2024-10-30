@@ -149,10 +149,10 @@ def main(yaml_path: str) -> None:
 
     """ check dataset """
     logger.info('check ct image data--------------------------->')
-    valid_data(csv_file, ct_data_dir, logger)
+    #valid_data(csv_file, ct_data_dir, logger)
 
     logger.info('check mask image data--------------------------->')
-    valid_data(csv_file, mask_data_dir, logger)
+    #valid_data(csv_file, mask_data_dir, logger)
 
     """ select train/valid processor"""
     processor_train = PROCESSOR_CLASSES[cfg.MODEL.TRAIN_PROCESSOR]
@@ -240,4 +240,4 @@ if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1]:
         main(sys.argv[1])
     else:
-        main('../config/unet.yaml')
+        main('../config/unet_1030.yaml')
